@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\API;
-use App\Http\Controllers\API\Base\BaseApiController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\User\UserResource;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Controllers\API\Base\BaseApiController;
 
 class AuthController extends BaseApiController
 {
@@ -19,5 +22,21 @@ class AuthController extends BaseApiController
 
        ]);
        return $this->success(new UserResource($user), 'User registered successfully',201);
+    }
+
+     public function login(LoginRequest $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            return $this->error('Invalid credentials', 401);
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return $this->success([
+            'user'  => new UserResource($user),
+            'token' => $token,
+        ], 'Login successful');
     }
 }
