@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\API;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\User\UserResource;
@@ -38,5 +36,11 @@ class AuthController extends BaseApiController
             'user'  => new UserResource($user),
             'token' => $token,
         ], 'Login successful');
+    }
+
+    public function me(Request $request)
+    {
+
+        return $this->success(new UserResource($request->user()), 'User profile');
     }
 }
