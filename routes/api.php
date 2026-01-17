@@ -28,6 +28,7 @@ Route::prefix('v1')->group(function () {
         // Profile
         Route::patch('/profile', [ProfileController::class, 'update']);
 
-       
+        // Tasks
+        Route::apiResource('tasks', TaskController::class);
     });
 });
