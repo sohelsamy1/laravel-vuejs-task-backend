@@ -32,6 +32,7 @@ Route::prefix('v1')->group(function () {
         Route::apiResource('tasks', TaskController::class);
         Route::post('tasks/{id}/restore', [TaskController::class, 'restore']);
         Route::delete('tasks/{id}/force', [TaskController::class, 'forceDelete']);
+        Route::patch('tasks/{task}/status', [TaskController::class, 'updateStatus']);
 
         //filter tasks by status
         Route::get('/tasksfilter', [TaskController::class, 'filter']);

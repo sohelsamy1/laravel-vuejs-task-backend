@@ -110,4 +110,20 @@ class TaskController extends BaseApiController
             return $this->error('Failed to filter tasks', 500, $e);
         }
     }
+
+     public function updateStatus(Request $request, Task $task): JsonResponse
+    {
+        $request->validate([
+            'status' => 'required|in:new,in_progress,completed,canceled',
+        ]);
+
+        try {
+            $this->authorize('update', $task);
+            $task->update(['status' => $request->status]);
+
+            return $this->success(new TaskResource($task), 'Task status updated');
+        } catch (\Throwable $e) {
+            return $this->error('Failed to update task status', 500, $e);
+        }
+    }
 }
