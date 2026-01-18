@@ -126,7 +126,7 @@ class TaskController extends BaseApiController
             return $this->error('Failed to update task status', 500, $e);
         }
     }
-   
+
      public function summary(): JsonResponse
     {
         try {
@@ -145,6 +145,20 @@ class TaskController extends BaseApiController
             return $this->success($finalSummary, 'Task summary fetched successfully');
         } catch (\Throwable $e) {
             return $this->error('Failed to load task summary', 500, $e);
+        }
+    }
+
+     public function trashed(): JsonResponse
+    {
+        try {
+            $tasks = Auth::user()->tasks()
+                ->onlyTrashed()
+                ->latest()
+                ->paginate(10);
+
+            return $this->success(new TaskCollection($tasks), 'Trashed tasks fetched successfully');
+        } catch (\Throwable $e) {
+            return $this->error('Failed to fetch trashed tasks', 500, $e);
         }
     }
 }
