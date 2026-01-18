@@ -31,5 +31,6 @@ Route::prefix('v1')->group(function () {
         // Tasks
         Route::apiResource('tasks', TaskController::class);
         Route::post('tasks/{id}/restore', [TaskController::class, 'restore']);
+        Route::delete('tasks/{id}/force', [TaskController::class, 'forceDelete']);
     });
 });

@@ -80,4 +80,16 @@ class TaskController extends BaseApiController
             return $this->error('Failed to restore task', 500, $e);
         }
     }
+
+     public function forceDelete($id): JsonResponse
+    {
+        try {
+            $task = Task::withTrashed()->findOrFail($id);
+            $this->authorize('forceDelete', $task);
+            $task->forceDelete();
+            return $this->success(null, 'Task permanently deleted');
+        } catch (\Throwable $e) {
+            return $this->error('Failed to permanently delete task', 500, $e);
+        }
+    }
 }
