@@ -92,4 +92,22 @@ class TaskController extends BaseApiController
             return $this->error('Failed to permanently delete task', 500, $e);
         }
     }
+
+     public function filter(Request $request): JsonResponse
+    {
+        $request->validate([
+            'status' => 'required|in:new,in_progress,completed,canceled'
+        ]);
+
+        try {
+            $tasks = Auth::user()->tasks()
+                ->where('status', $request->status)
+                ->latest()
+                ->paginate(10);
+
+            return $this->success(new TaskCollection($tasks), 'Filtered tasks loaded');
+        } catch (\Throwable $e) {
+            return $this->error('Failed to filter tasks', 500, $e);
+        }
+    }
 }
