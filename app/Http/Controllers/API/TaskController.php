@@ -46,7 +46,7 @@ class TaskController extends BaseApiController
             return $this->error('Unauthorized or Task not found', 403, $e);
         }
     }
-     
+
      public function update(UpdateTaskRequest $request, Task $task): JsonResponse
     {
         try {
@@ -55,6 +55,17 @@ class TaskController extends BaseApiController
             return $this->success(new TaskResource($task), 'Task updated successfully');
         } catch (\Throwable $e) {
             return $this->error('Failed to update task', 500, $e);
+        }
+    }
+
+     public function destroy(Task $task): JsonResponse
+    {
+        try {
+            $this->authorize('delete', $task);
+            $task->delete();
+            return $this->success(null, 'Task soft-deleted');
+        } catch (\Throwable $e) {
+            return $this->error('Failed to delete task', 500, $e);
         }
     }
 }
