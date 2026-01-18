@@ -126,4 +126,25 @@ class TaskController extends BaseApiController
             return $this->error('Failed to update task status', 500, $e);
         }
     }
+   
+     public function summary(): JsonResponse
+    {
+        try {
+            $summary = Auth::user()->tasks()
+                ->selectRaw('status, COUNT(*) as count')
+                ->groupBy('status')
+                ->pluck('count', 'status');
+
+            $allStatuses = ['new', 'in_progress', 'completed', 'canceled'];
+            $finalSummary = [];
+
+            foreach ($allStatuses as $status) {
+                $finalSummary[$status] = $summary[$status] ?? 0;
+            }
+
+            return $this->success($finalSummary, 'Task summary fetched successfully');
+        } catch (\Throwable $e) {
+            return $this->error('Failed to load task summary', 500, $e);
+        }
+    }
 }

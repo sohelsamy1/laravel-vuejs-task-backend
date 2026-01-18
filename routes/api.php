@@ -6,11 +6,10 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\TaskController;
 use App\Http\Controllers\API\ProfileController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-*/
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
 
 Route::prefix('v1')->group(function () {
 
@@ -28,11 +27,15 @@ Route::prefix('v1')->group(function () {
         // Profile
         Route::patch('/profile', [ProfileController::class, 'update']);
 
-        // Tasks
-        Route::apiResource('tasks', TaskController::class);
+        // Get trashed tasks
+        Route::get('/tasks/summary', [TaskController::class, 'summary']);
+
         Route::post('tasks/{id}/restore', [TaskController::class, 'restore']);
         Route::delete('tasks/{id}/force', [TaskController::class, 'forceDelete']);
         Route::patch('tasks/{task}/status', [TaskController::class, 'updateStatus']);
+
+         // Task routes
+         Route::apiResource('tasks',TaskController::class);
 
         //filter tasks by status
         Route::get('/tasksfilter', [TaskController::class, 'filter']);
