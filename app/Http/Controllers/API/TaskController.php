@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\Task\TaskResource;
 use App\Http\Resources\Task\TaskCollection;
