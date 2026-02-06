@@ -24,7 +24,7 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'status' => 'required|in:new_progress,completed,canceled',
+            'status' => 'required|in:new,in_progress,completed,canceled',
         ];
     }
 
@@ -36,7 +36,7 @@ class StoreTaskRequest extends FormRequest
         return [
             'title.required' => 'Task title is required',
             'status.required' => 'Task status is required',
-            'status.in' => 'Status must be new_progress, completed or canceled',
+            'status.in' => 'Status must be new, in_progress, completed or canceled',
         ];
     }
 }
