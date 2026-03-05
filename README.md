@@ -1,77 +1,81 @@
-# Laravel Vue.js CRUD Backend API
+# laravel-vuejs-task-backend — Laravel + Vue.js CRUD API  
+
+![Laravel](https://img.shields.io/badge/Laravel-12-red)
+![PHP](https://img.shields.io/badge/PHP-8.2-blue)
+![MySQL](https://img.shields.io/badge/MySQL-Database-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 This repository contains the **Backend REST API** for a Laravel + Vue.js CRUD application.  
-The backend is built with **Laravel**, secured using **Laravel Sanctum**, and provides authentication, profile management, and task management APIs.
+The backend is built with **Laravel**, secured using **Laravel Sanctum**, and provides authentication, profile management, and task management APIs.  
 
 👉 **Frontend:** Built with **Vue.js**  
-🔗 Frontend Repository: https://github.com/sohelsamy1/laravel-vuejs-crud-frontend  
-👉 **Screenshots & demo video:** Will be added later
+🔗 Frontend Repository: https://github.com/sohelsamy1/laravel-vuejs-task-frontend  
 
 ---
 
-##  Tech Stack
+##  Tech Stack  
 
-- Laravel
-- Laravel Sanctum (API Authentication)
-- RESTful API
-- MySQL (or compatible database)
+- Laravel  
+- Laravel Sanctum (API Authentication)  
+- RESTful API  
+- MySQL (or compatible database)  
 
----
+---  
 
-## 📦 Features
+## 📦 Features  
 
-### 🔐 Authentication
-- User Registration
-- User Login
-- User Logout
-- Get authenticated user info (`/me`)
+### 🔐 Authentication  
+- User Registration  
+- User Login  
+- User Logout  
+- Get authenticated user info (`/me`)  
 
-### 👤 Profile
-- Update authenticated user profile
+### 👤 Profile  
+- Update authenticated user profile  
 
-### Task Management
-- Create task
-- List tasks
-- View single task
-- Update task
-- Delete task (soft delete)
-- Restore task
-- Force delete task
-- Update task status
-- Filter tasks by status
-- Task summary (including trashed tasks)
+### Task Management  
+- Create task  
+- List tasks  
+- View single task  
+- Update task  
+- Delete task (soft delete)  
+- Restore task  
+- Force delete task  
+- Update task status  
+- Filter tasks by status  
+- Task summary (including trashed tasks)  
 
----
+---  
 
-## 🔗 API Routes (v1)
+## 🔗 API Routes (v1)  
 
-All API endpoints are prefixed with:
+All API endpoints are prefixed with:  
 
-/api/v1
+/api/v1  
 
 
-### 🔓 Public Routes
+### 🔓 Public Routes  
 | Method | Endpoint | Description |
 |------|---------|-------------|
 | POST | /register | User registration |
 | POST | /login | User login |
 
----
+---  
 
-### 🔐 Protected Routes (auth:sanctum)
+### 🔐 Protected Routes (auth:sanctum)  
 
-#### Auth
+#### Auth  
 | Method | Endpoint | Description |
 |------|---------|-------------|
 | POST | /logout | Logout user |
 | GET | /me | Get authenticated user |
 
-#### Profile
+#### Profile  
 | Method | Endpoint | Description |
 |------|---------|-------------|
 | PATCH | /profile | Update profile |
 
-#### Tasks
+#### Tasks  
 | Method | Endpoint | Description |
 |------|---------|-------------|
 | GET | /tasks | Get all tasks |
@@ -87,36 +91,36 @@ All API endpoints are prefixed with:
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation  
 
 ```bash
-git clone <repository-url>
-cd project-folder
-composer install
-cp .env.example .env
-php artisan key:generate
-php artisan migrate
-php artisan serve
+git clone <repository-url>  
+cd project-folder  
+composer install  
+cp .env.example .env  
+php artisan key:generate  
+php artisan migrate  
+php artisan serve  
 
 ```
 
-## 🔐 Authentication Notes
+## 🔐 Authentication Notes  
 
-Authentication is handled using Laravel Sanctum
-All protected routes require a valid Bearer Token
+Authentication is handled using Laravel Sanctum  
+All protected routes require a valid Bearer Token  
 
-## Frontend
+## Frontend  
 
-The frontend is developed separately using Vue.js and consumes this API.
+The frontend is developed separately using Vue.js and consumes this API.  
 
-## Screenshots & Demo
+## Screenshots & Demo  
 
-Screenshots and demo video will be added in future updates.
+Screenshots and demo video will be added in future updates.  
 
-## Author
+## 👤 Author  
 
-Sohel Samy
-- GitHub: https://github.com/sohelsamy1  
-- LinkedIn: https://linkedin.com/in/sohelsamy
-
-⭐ If you like this project, feel free to star the repository.
+**Sohel Samy**   
+Laravel | Vue | React Developer  
+GitHub: https://github.com/sohelsamy1  
+LinkedIn: https://linkedin.com/in/sohelsamy  
+⭐ If you like this project, feel free to star the repository.  
